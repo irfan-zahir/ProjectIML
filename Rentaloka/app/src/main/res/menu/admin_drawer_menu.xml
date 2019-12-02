@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@+id/nav_view">
+
+    <group>
+        <item
+            android:id="@+id/admin_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/admin_car"
+            android:icon="@drawable/ic_car"
+            android:title="Update Car" />
+        <item
+            android:id="@+id/admin_promotion"
+            android:icon="@drawable/ic_promotion"
+            android:title="Update Promotion" />
+        <item
+            android:id="@+id/admin_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout" />
+    </group>
+
+</menu>

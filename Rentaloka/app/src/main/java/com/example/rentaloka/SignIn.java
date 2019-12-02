@@ -116,7 +116,7 @@ public class SignIn extends AppCompatActivity {
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(checkAdmin(email,dataSnapshot)){
+                        if(!checkAdmin(email,dataSnapshot)){
 
                             progressDialog.setMessage("Signing in as "+email+"...");
                             progressDialog.show();
@@ -183,9 +183,9 @@ public class SignIn extends AppCompatActivity {
             user.setuType(ds.getValue(User.class).getuType());
             user.setUseremail(ds.getValue(User.class).getUseremail());
             if(user.getUseremail().equals(email)&&user.getuType().equals("customer")){
-                return false;
-            }else if(user.getUseremail().equals(email)&&user.getuType().equals("admin")){
                 return true;
+            }else if(user.getUseremail().equals(email)&&user.getuType().equals("admin")){
+                return false;
             }
         }
         return true;

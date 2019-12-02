@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titlePage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Add or Insert new car" />
+
+    <TextView
+        android:id="@+id/tName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titlePage"
+        android:layout_alignBaseline="@+id/editCarName"
+        android:layout_margin="4dp"
+        android:text="Car Name:" />
+
+    <EditText
+        android:hint="Car Name"
+        android:id="@+id/editCarName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titlePage"
+        android:layout_margin="4dp"
+        android:layout_toEndOf="@+id/tPrice" />
+
+    <TextView
+        android:id="@+id/tPNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tName"
+        android:layout_alignBaseline="@+id/editPNumber"
+        android:layout_margin="4dp"
+        android:text="Plate Number:" />
+
+    <EditText
+        android:id="@+id/editPNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editCarName"
+        android:layout_margin="4dp"
+        android:hint="Plate Number"
+        android:layout_toEndOf="@+id/tPrice" />
+
+    <TextView
+        android:id="@+id/tSeats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tPNumber"
+        android:layout_alignBaseline="@+id/editCarSeats"
+        android:layout_margin="4dp"
+        android:text="Seats Amount:" />
+
+    <EditText
+        android:hint="4/6/12"
+        android:id="@+id/editCarSeats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPNumber"
+        android:layout_margin="4dp"
+        android:inputType="number"
+        android:layout_toEndOf="@+id/tPrice" />
+
+    <TextView
+        android:id="@+id/tPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tSeats"
+        android:layout_alignBaseline="@+id/editPrice"
+        android:layout_margin="4dp"
+        android:text="Price per Hour:" />
+
+    <EditText
+        android:id="@+id/editPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editCarSeats"
+        android:layout_margin="4dp"
+        android:hint="0.00"
+        android:inputType="numberDecimal"
+        android:layout_toEndOf="@+id/tPrice" />
+
+    <Button
+        android:id="@+id/button_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPrice"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:text="Add New Car"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button_car"
+        android:layout_margin="5dp"
+        android:scrollbars="vertical" />
+
+</RelativeLayout>

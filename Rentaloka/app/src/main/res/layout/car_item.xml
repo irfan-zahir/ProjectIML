@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rvCarLayout"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+'
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Line 1"
+            android:textSize="25dp"
+            android:id="@+id/rvCarName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Line 2"
+            android:layout_below="@id/rvCarName"
+            android:id="@+id/rvPlateNumber"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Line 3"
+            android:layout_below="@+id/rvPlateNumber"
+            android:id="@+id/rvCarSeats"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Line 4"
+            android:id="@+id/rvPrice"
+            android:layout_below="@+id/rvCarSeats"/>
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_delete"
+            android:clickable="true"
+            android:id="@+id/rvDelete"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
