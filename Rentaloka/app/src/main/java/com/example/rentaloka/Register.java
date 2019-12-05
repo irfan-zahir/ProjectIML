@@ -24,7 +24,7 @@ public class Register extends AppCompatActivity {
     private Button send, signIn;
     private ProgressDialog progressDialog;
     private DatabaseReference databaseUser;
-    private String uType;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         databaseUser = FirebaseDatabase.getInstance().getReference("user");
+        mAuth = FirebaseAuth.getInstance();
 
         editTextFName = (EditText) findViewById(R.id.editTextFName);
         editTextLName = (EditText) findViewById(R.id.editTextLName);
@@ -83,25 +84,16 @@ public class Register extends AppCompatActivity {
                                         progressDialog.setMessage("Email have been used..Redirecting to Sign In page.");
                                         progressDialog.show();
                                         Toast.makeText(Register.this, "Email have been used", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(Register.this, SignIn.class);
-                                        intent.putExtra("email", email);
-                                        intent.putExtra("pwd", password);
-                                        startActivity(intent);
+                                        startActivity(new Intent(Register.this, SignIn.class));
                                     }else{
-
-
-                                        String id = FirebaseAuth.getInstance().getUid();
-
+                                        String id = email.toLowerCase().substring(0,email.indexOf('@'));
                                         User user = new User(id, firstname, lastname, email, password, uType);
                                         databaseUser.child(id).setValue(user);
+                                        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password);
                                         progressDialog.dismiss();
                                         Toast.makeText(Register.this, "User successfully added", Toast.LENGTH_SHORT).show();
-                                        progressDialog.setMessage("Redirecting to Sign In page..");
-                                        progressDialog.show();
-                                        Intent intent = new Intent(Register.this, SignIn.class);
-                                        intent.putExtra("email", email);
-                                        intent.putExtra("pwd", password);
-                                        startActivity(intent);
+                                        startActivity(new Intent(Register.this,SignIn.class));
+                                        finish();
                                     }
                                 }
 

@@ -7,7 +7,7 @@
     tools:context=".Home">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleCustomer"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:text="Customer HomePage"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/titleCustomer"
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

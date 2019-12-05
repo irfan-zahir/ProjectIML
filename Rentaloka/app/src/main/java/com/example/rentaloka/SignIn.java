@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +28,7 @@ public class SignIn extends AppCompatActivity {
     private Button signIn, register;
     private EditText inEmail, inPassword;
     private FirebaseAuth mAuth;
-    private String uID;
+    private FirebaseUser firebaseUser;
 
     private static final String TAG = "SignIn";
     private DatabaseReference databaseReference;
@@ -46,55 +47,8 @@ public class SignIn extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(SignIn.this);
         mAuth = FirebaseAuth.getInstance();
-        uID = mAuth.getUid();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("user");
-
-        final Intent intent = getIntent();
-        final String rEmail, rPwd;
-        rEmail = intent.getStringExtra("email");
-        rPwd = intent.getStringExtra("pwd");
-
-        if (!TextUtils.isEmpty(rEmail) && !TextUtils.isEmpty((rPwd))) {
-
-            progressDialog.setMessage("Registering "+ rEmail);
-            progressDialog.show();
-
-            mAuth.createUserWithEmailAndPassword(rEmail, rPwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        progressDialog.dismiss();
-                        inEmail.setText(rEmail);
-                        inPassword.setText(rPwd);
-
-                        progressDialog.setMessage("Signing in as "+rEmail+"...");
-                        progressDialog.show();
-
-                        mAuth.signInWithEmailAndPassword(rEmail,rPwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()) {
-                                    startActivity(new Intent(SignIn.this, Home.class));
-                                }else{
-
-                                    Toast.makeText(SignIn.this, "Error!:" + task.getException(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    } else {
-                        progressDialog.dismiss();
-                        inEmail.setText(rEmail);
-                        inPassword.setText(rPwd);
-                        Toast.makeText(SignIn.this, "Error!:" + task.getException(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(SignIn.this, Home.class));
-            finish();
-        }
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override

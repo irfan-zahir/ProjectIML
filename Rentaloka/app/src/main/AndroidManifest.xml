@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.rentaloka.HomeAdmin"></activity>
+        <activity android:name="com.example.rentaloka.HomeAdmin"/>
         <activity android:name="com.example.rentaloka.Register" />
         <activity android:name="com.example.rentaloka.Home" />
         <activity android:name="com.example.rentaloka.SignIn">

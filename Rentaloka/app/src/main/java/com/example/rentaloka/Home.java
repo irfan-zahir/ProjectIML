@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-
 public class Home extends AppCompatActivity {
 
     private Button logout;
@@ -34,4 +33,9 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+    }
 }

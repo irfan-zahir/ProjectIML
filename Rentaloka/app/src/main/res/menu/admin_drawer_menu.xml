@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@+id/nav_view">
+    tools:showIn="@+id/navView">
 
     <group>
         <item
@@ -16,6 +16,10 @@
             android:id="@+id/admin_promotion"
             android:icon="@drawable/ic_promotion"
             android:title="Update Promotion" />
+        <item
+            android:id="@+id/admin_history"
+            android:icon="@drawable/ic_history"
+            android:title="History"/>
         <item
             android:id="@+id/admin_logout"
             android:icon="@drawable/ic_logout"
