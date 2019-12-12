@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:textSize="20dp"
         android:text="Add or Insert new car" />
 
     <TextView
@@ -84,6 +85,47 @@
         android:hint="0.00"
         android:inputType="numberDecimal"
         android:layout_toEndOf="@+id/tPrice" />
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:id="@+id/adminRadioGroup"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPrice">
+
+        <RadioButton
+            android:layout_margin="5dp"
+            android:id="@+id/adminRadioButton_4seaters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"/>
+
+        <RadioButton
+            android:layout_margin="5dp"
+            android:id="@+id/adminRadioButton_6seaters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"/>
+
+        <RadioButton
+            android:layout_margin="5dp"
+            android:id="@+id/adminRadioButton_12seaters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"/>
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/adminCheckCar"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/editPrice"
+        android:layout_toEndOf="@+id/adminRadioGroup"
+        android:layout_toStartOf="@+id/button_car"
+        android:text="Check"/>
 
     <Button
         android:id="@+id/button_car"

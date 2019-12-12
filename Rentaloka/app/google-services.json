@@ -8,18 +8,63 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:470043215373:android:42a93ae6ad30cae6ff3744",
+        "mobilesdk_app_id": "1:470043215373:android:8727e535953af4b2ff3744",
         "android_client_info": {
           "package_name": "com.example.signin"
         }
       },
       "oauth_client": [
         {
+          "client_id": "470043215373-ft4m010th3i9na5u3qd1iqp863p8poj6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.signin",
+            "certificate_hash": "726b575f4dc63e02f07b9a85b690232b2f0e02ab"
+          }
+        },
+        {
           "client_id": "470043215373-ce6jl1jnjesn73rh1a4nns46pqtfsnb3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.signin",
             "certificate_hash": "a6352f14b1ab113463c5fff0440a0aec8f34016d"
+          }
+        },
+        {
+          "client_id": "470043215373-eft4n2r6ulg9ta8o1nviudqvmrj9e90i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5YULl7VWYvY4mYBJ0LFdTWKw9Kmo5ioc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470043215373-eft4n2r6ulg9ta8o1nviudqvmrj9e90i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470043215373:android:b3fc269d903c2458ff3744",
+        "android_client_info": {
+          "package_name": "com.example.viewpromotion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470043215373-vrfmbbun69f7gglqq013tus4eerqauur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.viewpromotion",
+            "certificate_hash": "726b575f4dc63e02f07b9a85b690232b2f0e02ab"
           }
         },
         {

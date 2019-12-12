@@ -24,7 +24,7 @@ public class AdminPromotion extends Fragment {
 
     private DatabaseReference databaseReference;
     private Button buttonPromotion;
-    private EditText promoName, promoDesc;
+    private EditText promoName, promoDesc, promoDisc;
 
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter<Promotion, adminPromoViewHolder> recyclerAdapter;
@@ -40,6 +40,7 @@ public class AdminPromotion extends Fragment {
         buttonPromotion = adminPromotionView.findViewById(R.id.buttonPromotion);
         promoName = adminPromotionView.findViewById(R.id.promotionName);
         promoDesc = adminPromotionView.findViewById(R.id.promotionDesc);
+        promoDisc = adminPromotionView.findViewById(R.id.pDisc);
 
         recyclerView = adminPromotionView.findViewById(R.id.recyclerViewPromotion);
         recyclerView.setHasFixedSize(true);
@@ -62,6 +63,8 @@ public class AdminPromotion extends Fragment {
                 holder.promoName.setText(model.getPromotionName());
                 holder.promoDesc.setText(model.getPromotionDesc());
                 holder.promoID.setText(model.getPromoID());
+                String disc = Integer.toString(model.getPromoDisc());
+                holder.promoDisc.setText(disc+"% off");
 
                 holder.promoDelete.setOnClickListener(new View.OnClickListener() {
                     String pID = holder.promoID.getText().toString().trim();
@@ -87,12 +90,16 @@ public class AdminPromotion extends Fragment {
         buttonPromotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pName, pDesc, pID;
+                String pName, pDesc, pID, pDisc;
+                int prDisc;
+
                 pName = promoName.getText().toString().trim();
                 pDesc = promoDesc.getText().toString().trim();
+                pDisc = promoDisc.getText().toString().trim();
+                prDisc = Integer.parseInt(pDisc);
                 pID = pName.toLowerCase().replace(" ", "");
 
-                databaseReference.child(pID).setValue(new Promotion(pName,pDesc,pID));
+                databaseReference.child(pID).setValue(new Promotion(pName,pDesc,pID,prDisc));
 
                 promoName.setText("");
                 promoDesc.setText("");

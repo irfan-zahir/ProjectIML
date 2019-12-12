@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/imgProfile"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imgProfile"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/FLNameLayout"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_below="@+id/imgProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:id="@+id/profileFName"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:layout_weight="1"
+            android:gravity="start"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Name"
+            android:id="@+id/profileLName"
+            android:layout_below="@+id/imgProfile"
+            android:textSize="25dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imgProfile"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/FLNameEditLayout"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editFName"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:textSize="25dp" />
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Name"
+            android:textSize="25dp"
+            android:id="@+id/editLName"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/profileEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/FLNameEditLayout"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit profile"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:id="@+id/editProfile"
+        android:layout_below="@+id/profileEmail"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Changes"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:visibility="invisible"
+        android:id="@+id/saveChanges"
+        android:layout_below="@+id/profileEmail"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

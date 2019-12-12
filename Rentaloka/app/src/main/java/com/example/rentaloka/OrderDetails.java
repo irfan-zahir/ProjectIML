@@ -7,27 +7,27 @@ public class OrderDetails {
     private String usageDuration;
     private String totalPayment;
     private String orderDate;
-    private String carReturned;
+    private int seats;
 
     public OrderDetails(){
 
     }
 
-    public OrderDetails(String userEmail, String plateNumber, String usageDuration, String totalPayment, String orderDate,String carReturned) {
+    public OrderDetails(String userEmail, String plateNumber, String usageDuration, String totalPayment, String orderDate, int seats) {
         this.userEmail = userEmail;
         this.plateNumber = plateNumber;
         this.usageDuration = usageDuration;
         this.totalPayment = totalPayment;
         this.orderDate = orderDate;
-        this.carReturned = carReturned;
+        this.seats = seats;
     }
 
-    public String getCarReturned() {
-        return carReturned;
+    public Integer getSeats() {
+        return seats;
     }
 
-    public void setCarReturned(String carReturned) {
-        this.carReturned = carReturned;
+    public void seatSeats(Integer seats) {
+        this.seats = seats;
     }
 
     public String getOrderDate() {

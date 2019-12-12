@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +29,9 @@ public class AdminCar extends Fragment {
     private View adminCarView;
 
     private DatabaseReference databaseReference;
-    private Button buttonCar;
+
+    private RadioGroup adminRadioGroup;
+    private Button buttonCar, adminCheckCar;
     private EditText eCarName, ePlateNUm, eCarSeats, eCarPrice;
 
     private RecyclerView recyclerView;
@@ -35,9 +40,12 @@ public class AdminCar extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        adminCarView = inflater.inflate(R.layout.admin_car, container,false);
+        adminCarView = inflater.inflate(R.layout.admin_car, container, false);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("car");
+
+        adminCheckCar = adminCarView.findViewById(R.id.adminCheckCar);
+        adminRadioGroup = adminCarView.findViewById(R.id.adminRadioGroup);
 
         buttonCar = adminCarView.findViewById(R.id.button_car);
         eCarName = adminCarView.findViewById(R.id.editCarName);
@@ -56,40 +64,58 @@ public class AdminCar extends Fragment {
     public void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<CarDetails>()
-                .setQuery(databaseReference, CarDetails.class)
-                .build();
 
-        recyclerAdapter = new FirebaseRecyclerAdapter<CarDetails, adminCarViewHolder>(options) {
-
+        adminCheckCar.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected void onBindViewHolder(@NonNull final adminCarViewHolder viewHolder, int position, @NonNull final CarDetails model) {
+            public void onClick(View v) {
 
-                viewHolder.rvCarName.setText(model.getCarName());
-                viewHolder.rvPlateNumber.setText(model.getPlateNumber().toUpperCase());
-                viewHolder.rvCarSeats.setText(model.getCarSeats() + " Seats");
-                viewHolder.rvPrice.setText("RM " + String.format("%.2f", model.getPricepHour()));
+                int radioID = adminRadioGroup.getCheckedRadioButtonId();
 
-                viewHolder.rvDelete.setOnClickListener(new View.OnClickListener() {
-                    String pNumber = viewHolder.rvPlateNumber.getText().toString().trim();
+                View radioButton = adminRadioGroup.findViewById(radioID);
+                int radioId = adminRadioGroup.indexOfChild(radioButton);
+                RadioButton btn = (RadioButton) adminRadioGroup.getChildAt(radioId);
+                String seats = (String) btn.getText();
+
+                FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<CarDetails>()
+                        .setQuery(databaseReference.child(seats), CarDetails.class)
+                        .build();
+
+                recyclerAdapter = new FirebaseRecyclerAdapter<CarDetails, adminCarViewHolder>(options) {
                     @Override
-                    public void onClick(View view) {
-                        databaseReference.child(pNumber.toLowerCase().replace(" ","")).removeValue();
-                    }
-                });
-            }
+                    protected void onBindViewHolder(@NonNull final adminCarViewHolder holder, int position, @NonNull final CarDetails model) {
+                        holder.rvCarName.setText(model.getCarName());
+                        holder.rvPlateNumber.setText(model.getPlateNumber());
+                        holder.rvCarSeats.setText(Integer.toString(model.getCarSeats()));
+                        holder.rvPrice.setText("RM " + String.format("%.2f", model.getPricepHour()));
+                        holder.rvDelete.setOnClickListener(new View.OnClickListener() {
+                            String pNumber = holder.rvPlateNumber.getText().toString().trim();
+                            String seats = holder.rvCarSeats.getText().toString().trim();
 
-            @NonNull
-            @Override
-            public adminCarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.car_item,parent,false);
-                return new adminCarViewHolder(view);
+                            @Override
+                            public void onClick(View view) {
+                                databaseReference.child(seats).child(pNumber.toLowerCase().replace(" ", "")).removeValue();
+
+                                FirebaseDatabase.getInstance().getReference("caradmin")
+                                        .child(seats).child(pNumber.toLowerCase().replace(" ", "")).removeValue();
+                            }
+                        });
+                    }
+
+                    @NonNull
+                    @Override
+                    public adminCarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.car_item, parent, false);
+                        return new adminCarViewHolder(view);
+                    }
+                };
+
+                recyclerAdapter.notifyDataSetChanged();
+                recyclerAdapter.startListening();
+                recyclerView.setAdapter(recyclerAdapter);
+
             }
-        };
-        recyclerAdapter.notifyDataSetChanged();
-        recyclerAdapter.startListening();
-        recyclerView.setAdapter(recyclerAdapter);
+        });
 
         buttonCar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,8 +131,11 @@ public class AdminCar extends Fragment {
 
                 carStatus = "free";
 
-                databaseReference.child(plateNum.toLowerCase().replace(" ",""))
-                        .setValue(new CarDetails(plateNum,carName,carSeats,carPrice,carStatus));
+                FirebaseDatabase.getInstance().getReference("admincar").child(eCarSeats.getText().toString().trim()).child(plateNum.toLowerCase().replace(" ", ""))
+                        .setValue(new CarDetails(plateNum, carName, carSeats, carPrice, carStatus));
+
+                databaseReference.child(eCarSeats.getText().toString().trim()).child(plateNum.toLowerCase().replace(" ", ""))
+                        .setValue(new CarDetails(plateNum, carName, carSeats, carPrice, carStatus));
 
                 eCarName.setText("");
                 ePlateNUm.setText("");

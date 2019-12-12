@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car Name"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/carName"/>
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:text="price per Hour"
+        android:layout_width="wrap_content"
+        android:id="@+id/pricePerHour"
+        android:layout_below="@+id/carName"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Usage Hours"
+        android:textSize="15dp"
+        android:id="@+id/enterUsageDuration"
+        android:layout_below="@+id/enterPromo"/>
+
+    <EditText
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Promotion"
+        android:id="@+id/enterPromo"
+        android:textSize="15dp"
+        android:layout_below="@id/pricePerHour"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tPayment"
+        android:text="Total payment"
+        android:layout_below="@+id/enterUsageDuration"/>
+
+    <Button
+        android:id="@+id/checkTotal"
+        android:layout_margin="5dp"
+        android:text="Total Payment"
+        android:layout_below="@+id/tPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addOrder"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/tPayment"
+        android:layout_alignParentEnd="true"
+        android:text="Order Now"/>
+
+</RelativeLayout>

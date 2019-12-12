@@ -11,6 +11,7 @@ public class adminCarViewHolder extends RecyclerView.ViewHolder {
 
     TextView rvCarName, rvPlateNumber, rvCarSeats,rvPrice;
     ImageView rvDelete;
+    View mView;
 
     public adminCarViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,6 +20,7 @@ public class adminCarViewHolder extends RecyclerView.ViewHolder {
         rvCarSeats = itemView.findViewById(R.id.rvCarSeats);
         rvPrice = itemView.findViewById(R.id.rvPrice);
         rvDelete = itemView.findViewById(R.id.rvDelete);
-
+        mView = itemView;
     }
+
 }

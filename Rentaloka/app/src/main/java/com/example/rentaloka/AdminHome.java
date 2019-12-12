@@ -53,55 +53,60 @@ public class AdminHome extends Fragment {
                 .build();
 
 
-       adapter = new FirebaseRecyclerAdapter<OrderDetails, adminOrderViewHolder>(options) {
-           @Override
-           protected void onBindViewHolder(@NonNull final adminOrderViewHolder holder, int position, @NonNull OrderDetails model) {
+        adapter = new FirebaseRecyclerAdapter<OrderDetails, adminOrderViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull final adminOrderViewHolder holder, int position, @NonNull final OrderDetails model) {
 
-               holder.oCustEmail.setText(model.getUserEmail());
-               holder.oPlateNum.setText(model.getPlateNumber());
-               String uDuration = model.getUsageDuration() + " hours";
-               holder.oUsageDuration.setText(uDuration);
-               holder.oTotalPayment.setText("RM " + model.getTotalPayment());
-               holder.odateOrder.setText(model.getOrderDate());
+                holder.oCustEmail.setText(model.getUserEmail());
+                holder.oPlateNum.setText(model.getPlateNumber());
+                String uDuration = model.getUsageDuration() + " hours";
+                holder.oUsageDuration.setText(uDuration);
+                holder.oTotalPayment.setText("RM " + model.getTotalPayment());
+                holder.odateOrder.setText(model.getOrderDate());
 
-               holder.carReturned.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
-                       email = holder.oCustEmail.getText().toString().trim();
-                       pNum = holder.oPlateNum.getText().toString().trim();
-                       duration = holder.oUsageDuration.getText().toString().trim();
-                       tPayment = holder.oTotalPayment.getText().toString().trim();
-                       dateOrder = holder.odateOrder.getText().toString().trim();
-                       newID = dateOrder.replace("/","");
-                       orderID = email.substring(0,email.indexOf('@'))+pNum.toLowerCase().replace(" ","");
+                holder.carReturned.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        email = holder.oCustEmail.getText().toString().trim();
+                        pNum = holder.oPlateNum.getText().toString().trim();
+                        duration = holder.oUsageDuration.getText().toString().trim();
+                        tPayment = holder.oTotalPayment.getText().toString().trim();
+                        dateOrder = holder.odateOrder.getText().toString().trim();
+                        newID = dateOrder.replace("/","");
+                        orderID = email.substring(0,email.indexOf('@'))+pNum.toLowerCase().replace(" ","");
 
-                       FirebaseDatabase.getInstance().getReference("orderhistory")
-                               .addValueEventListener(new ValueEventListener() {
-                                   @Override
-                                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                       FirebaseDatabase.getInstance().getReference("orderhistory").child(newID).child(orderID)
-                                               .setValue(new HistoryOrder(email,pNum,duration,tPayment,dateOrder));
-                                   }
+                        FirebaseDatabase.getInstance().getReference("orderhistory").child(newID).child(orderID)
+                                .setValue(new HistoryOrder(email,pNum,duration,tPayment,dateOrder));
 
-                                   @Override
-                                   public void onCancelled(@NonNull DatabaseError databaseError) {
+                        databaseReference.child(orderID).removeValue();
 
-                                   }
-                               });
+                        FirebaseDatabase.getInstance().getReference("caradmin")
+                                .child(model.getSeats().toString()).orderByChild("plateNumber").equalTo(pNum)
+                                .addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        CarDetails carDetails = dataSnapshot.getValue(CarDetails.class);
+                                        FirebaseDatabase.getInstance().getReference("car").child(model.getSeats().toString())
+                                                .child(pNum.replace(" ","").toLowerCase()).setValue(carDetails);
+                                    }
 
-                       databaseReference.child(orderID).removeValue();
-                   }
-               });
-           }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-           @NonNull
-           @Override
-           public adminOrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-               View view = LayoutInflater.from(parent.getContext())
-                       .inflate(R.layout.order_item,parent,false);
-               return new adminOrderViewHolder(view);
-           }
-       };
+                                    }
+                                });
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public adminOrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.order_item,parent,false);
+                return new adminOrderViewHolder(view);
+            }
+        };
 
         adapter.notifyDataSetChanged();
         adapter.startListening();

@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class adminPromoViewHolder extends RecyclerView.ViewHolder  {
 
-    TextView promoName, promoDesc, promoID;
+    TextView promoName, promoDesc, promoID, promoDisc;
     ImageView promoDelete;
+
+    View view;
 
     public adminPromoViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -18,6 +20,7 @@ public class adminPromoViewHolder extends RecyclerView.ViewHolder  {
         promoDesc = itemView.findViewById(R.id.pLine2);
         promoID = itemView.findViewById(R.id.pID);
         promoDelete = itemView.findViewById(R.id.promotionDelete);
-
+        promoDisc = itemView.findViewById(R.id.pDisc);
+        view = itemView;
     }
 }

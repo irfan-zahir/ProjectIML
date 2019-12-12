@@ -80,7 +80,7 @@ public class SignIn extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         progressDialog.dismiss();
-                                        Toast.makeText(SignIn.this, "Successfulyy login as  admin!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignIn.this, "Successfully login as  admin!", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(SignIn.this,HomeAdmin.class);
                                         startActivity(intent);
 
@@ -100,7 +100,7 @@ public class SignIn extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         progressDialog.dismiss();
-                                        Toast.makeText(SignIn.this, "Successfulyy login!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignIn.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(SignIn.this, Home.class));
 
                                     } else {

@@ -4,53 +4,70 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_margin="5dp"
         android:id="@+id/textPromotion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Promotion"
-        android:layout_alignBaseline="@+id/promotionName"/>
+        android:layout_alignBaseline="@+id/promotionName"
+        android:layout_margin="5dp"
+        android:text="Promotion" />
 
     <EditText
-        android:layout_margin="5dp"
-        android:layout_toEndOf="@+id/textPromotion"
+        android:id="@+id/promotionName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/promotionName"/>
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/textPromotion" />
 
     <TextView
-        android:layout_margin="5dp"
+        android:id="@+id/textDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
         android:layout_below="@id/textPromotion"
-        android:id="@+id/textDescription"
-        android:layout_alignBaseline="@+id/promotionDesc"/>
+        android:layout_alignBaseline="@+id/promotionDesc"
+        android:layout_margin="5dp"
+        android:text="Description" />
+
     <EditText
+        android:id="@+id/promotionDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textPromotion"
         android:layout_below="@id/promotionName"
         android:layout_margin="5dp"
-        android:id="@+id/promotionDesc"/>
+        android:layout_toEndOf="@+id/textPromotion" />
 
-    <Button
+    <TextView
+        android:id="@+id/textDiscount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD"
+        android:layout_below="@id/textDescription"
+        android:layout_alignBaseline="@+id/promotionDisc"
+        android:layout_margin="5dp"
+        android:text="Discount" />
+
+    <EditText
+        android:id="@+id/promotionDisc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/promotionDesc"
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/textPromotion" />
+
+    <Button
+        android:id="@+id/buttonPromotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/promotionDisc"
         android:layout_alignParentEnd="true"
         android:layout_margin="5dp"
-        android:id="@+id/buttonPromotion"/>
+        android:text="ADD" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:scrollbars="vertical"
         android:id="@+id/recyclerViewPromotion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/buttonPromotion"
-        android:layout_margin="5dp"/>
-
+        android:layout_margin="5dp"
+        android:scrollbars="vertical" />
 
 
 </RelativeLayout>
